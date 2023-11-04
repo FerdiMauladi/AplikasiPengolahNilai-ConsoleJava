@@ -82,8 +82,7 @@ public class AplikasiPengolahNilaiSiswa {
 
     public static double getMean(List<Integer> listNilai) {
         double mean = 0;
-        for (int i = 0; i < listNilai.size(); i++)
-            mean += listNilai.get(i);
+        for (Integer integer : listNilai) mean += integer;
         mean /= listNilai.size();
 
         return mean;
@@ -91,7 +90,7 @@ public class AplikasiPengolahNilaiSiswa {
 
     public static double getMedian(List<Integer> listNilai) {
         Collections.sort(listNilai);
-        double median = 0;
+        double median;
         int n = listNilai.size();
 
         if (n % 2 == 1) {
@@ -105,26 +104,24 @@ public class AplikasiPengolahNilaiSiswa {
 
     public static int getModus(List<Integer> listNilai)
     {
-        HashMap<Integer,Integer> hashMapNilai = new HashMap<Integer,Integer>();
+        HashMap<Integer,Integer> hashMapNilai = new HashMap<>();
         int max  = 1;
         int temp = 0;
 
-        for(int i = 0; i < listNilai.size(); i++) {
+        for (Integer integer : listNilai) {
 
-            if (hashMapNilai.get(listNilai.get(i)) != null) {
+            if (hashMapNilai.get(integer) != null) {
 
-                int count = hashMapNilai.get(listNilai.get(i));
+                int count = hashMapNilai.get(integer);
                 count++;
-                hashMapNilai.put(listNilai.get(i), count);
+                hashMapNilai.put(integer, count);
 
-                if(count > max) {
-                    max  = count;
-                    temp = listNilai.get(i);
+                if (count > max) {
+                    max = count;
+                    temp = integer;
                 }
-            }
-
-            else
-                hashMapNilai.put(listNilai.get(i),1);
+            } else
+                hashMapNilai.put(integer, 1);
         }
         return temp;
     }
